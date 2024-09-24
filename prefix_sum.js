@@ -40,18 +40,12 @@ prefix_sum_optimized([1,2,3,4,5,6,7,8,9,10]); // [1,3,6,10,15,21,28,36,45,55]
 
 let highestAltitude = (gain) => {
     let maxValue = 0;
-    let sum = [];
+    let sum = [0]; // Initialize the first element as 0
     
     for (let i = 0; i < gain.length; i++){
-        if(i === 0){
-            sum[i] = gain[i];
-           
-        }else{
-            sum[i] = sum[i-1] + gain[i];
-            
-        }
-        if(sum[i] > maxValue){
-            maxValue = sum[i];
+        sum[i + 1] = sum[i] + gain[i]; // Calculate the cumulative sum
+        if(sum[i + 1] > maxValue){
+            maxValue = sum[i + 1];
         }
     }
     console.log(maxValue);
